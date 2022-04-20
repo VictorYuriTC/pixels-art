@@ -1,0 +1,33 @@
+#color_black {
+  background-color: black;
+}
+
+#color_red {
+  background-color: red;
+}
+
+#color_pink {
+  background-color: pink;
+}
+
+#color_purple {
+  background-color: purple;
+}
+
+.color {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  color: white;
+  display: inline-block;
+}
+
+.pixel {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+}
