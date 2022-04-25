@@ -1,3 +1,7 @@
+* {
+  padding: 0;
+}
+
 #color_black {
   background-color: black;
 }
@@ -20,6 +24,8 @@
   border-width: 1px;
   color: white;
   display: inline-block;
+  height: 40px;
+  width: 40px;
 }
 
 .pixel {
