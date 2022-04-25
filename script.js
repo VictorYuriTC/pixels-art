@@ -1,0 +1,1 @@
+let black = document.getElementById('color_black');
