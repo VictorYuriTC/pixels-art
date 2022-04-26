@@ -1,10 +1,12 @@
+/* Getting the colors' ids and the board id */
+
 const black = document.getElementById('color-black');
 const red = document.getElementById('color-red');
 const pink = document.getElementById('color-pink');
 const purple = document.getElementById('color-purple');
 const board = document.getElementById('pixel-board');
 
-/* A loop for created to generate pixels using appendChild */
+/* Creating a loop to generate pixels using appendChild */
 
 for (let i = 0; i < 25; i += 1) {
   const newPixel = document.createElement('li');
@@ -18,28 +20,29 @@ window.onload = function startPixelArt() {
   black.classList.toggle('selected');
 };
 
-/* Function to change the selected color */
+/* Creating a function to change the selected color */
 
-function changeColor(event) {
+function changeColor(newColor) {
   black.classList.remove('selected');
   red.classList.remove('selected');
   pink.classList.remove('selected');
   purple.classList.remove('selected');
-  event.target.classList.add('selected');
+  newColor.target.classList.add('selected');
 }
 
-document.querySelectorAll('.color').forEach((item) => {
+const allColors = document.querySelectorAll('.color');
+allColors.forEach((item) => {
   item.addEventListener('click', changeColor);
 });
 
-/* Lines to create the reset button */
+/* Coding lines to create the reset button */
 
 const reset = document.createElement('button');
 reset.id = 'clear-board';
 reset.innerText = 'Limpar';
 document.body.insertBefore(reset, board);
 
-/* Lines to change the button style */
+/* Changing the button style */
 
 reset.onmouseover = function buttonIce() {
   reset.style.background = '#ace2ef';
@@ -52,7 +55,7 @@ reset.onmouseleave = function buttonWhite() {
 
 /* Adding an event listener to the reset button */
 
-function resetColors() {
+function resetBoard() {
   const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].style.backgroundColor = 'white';
@@ -61,6 +64,6 @@ function resetColors() {
 
 const clearBoard = document.querySelector('#clear-board');
 function clear() {
-  clearBoard.addEventListener('click', resetColors);
+  clearBoard.addEventListener('click', resetBoard);
 }
 clear();
