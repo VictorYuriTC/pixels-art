@@ -2,13 +2,12 @@
 
 const black = document.getElementById('color-black');
 
-const board = document.getElementById('pixel-board');
-
 /* Creating a loop to generate pixels using appendChild */
 
 const boardLines = 5;
 for (let i = 0; i < boardLines * boardLines; i += 1) {
-  const pixel = document.createElement('li');
+  const board = document.getElementById('pixel-board');
+  const pixel = document.createElement('div');
   pixel.className = 'pixel';
   board.appendChild(pixel);
 }
@@ -48,21 +47,28 @@ paintPixel();
 
 /* Coding lines to create the reset button */
 
-const reset = document.createElement('button');
-reset.id = 'clear-board';
-reset.innerText = 'Limpar';
-document.body.insertBefore(reset, board);
+function createButton() {
+  const board = document.getElementById('pixel-board');
+  const reset = document.createElement('button');
+  reset.id = 'clear-board';
+  reset.innerText = 'Limpar';
+  document.body.insertBefore(reset, board);
+}
+createButton();
 
 /* Changing the button style */
 
-reset.onmouseover = function buttonIce() {
-  reset.style.background = '#ace2ef';
-  reset.style.cursor = 'pointer';
-};
-
-reset.onmouseleave = function buttonWhite() {
-  reset.style.background = 'white';
-};
+function changeButton() {
+  const reset = document.createElement('button');
+  reset.onmouseover = function buttonIce() {
+    reset.style.background = '#ace2ef';
+    reset.style.cursor = 'pointer';
+  };
+  reset.onmouseleave = function buttonWhite() {
+    reset.style.background = 'white';
+  };
+}
+changeButton();
 
 /* Adding an event listener to the reset button */
 
@@ -73,8 +79,8 @@ function resetBoard() {
   }
 }
 
-const clearBoard = document.querySelector('#clear-board');
 function clear() {
+  const clearBoard = document.querySelector('#clear-board');
   clearBoard.addEventListener('click', resetBoard);
 }
 clear();
