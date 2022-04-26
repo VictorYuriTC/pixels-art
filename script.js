@@ -14,7 +14,7 @@ generateBoard();
 /* Starting the pixel art project with the color black selected */
 
 window.onload = function startPixelArt() {
-  const black = document.getElementById('color-black').style.backgroundColor;
+  const black = document.getElementById('color-black');
   black.classList.toggle('selected');
 };
 
@@ -37,24 +37,6 @@ function changeColorClicking() {
 changeColorClicking();
 
 /* Creating a function to paint the pixels according to the selected color */
-
-function paintPixels() {
-  const pixel = document.querySelectorAll('.pixel');
-  const selectedColor = document.querySelectorAll('.selected').style.backgroundColor;
-  const paintingColor = selectedColor.backgroundColor;
-  for (let i = 0; i < pixel.length; i += 1) {
-    pixel[i].backgroundColor = paintingColor;
-    console.log('oi');
-  }
-}
-
-function paintPixelsClicking() {
-  const pixels = document.querySelectorAll('.pixel');
-  for (let i = 0; i < pixels.length; i += 1) {
-    pixels[i].addEventListener('click', paintPixels);
-  }
-}
-paintPixelsClicking();
 
 /* Changing the cursor appeareance to its selected color */
 
