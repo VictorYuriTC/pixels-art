@@ -3,9 +3,14 @@ const red = document.getElementById('color-red');
 const pink = document.getElementById('color-pink');
 const purple = document.getElementById('color-purple');
 
-const color = document.querySelectorAll('.color');
-const pixel = document.querySelectorAll('.pixel');
-const reset = document.getElementById('clear-board');
+const color = document.getElementsByClassName('color');
+const board = document.getElementById('pixel-board');
+
+for (let i = 0; i < 25; i += 1) {
+  const newPixel = document.createElement('li');
+  newPixel.className = 'pixel';
+  board.appendChild(newPixel);
+}
 
 window.onload = function startPixelArt() {
   return black.classList.toggle('selected');
@@ -22,6 +27,12 @@ color.onclick = function searchSelectedColor() {
   }
 };
 
-reset.onclick = function resetBoard() {
-  pixel.style.backgroundColor = 'white';
+const reset = document.getElementById('clear-board');
+
+reset.onmouseover = function buttonIce() {
+  reset.style.background = '#ace2ef';
+};
+
+reset.onmouseleave = function buttonWhite() {
+  reset.style.background = 'white';
 };
