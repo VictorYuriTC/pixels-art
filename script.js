@@ -1,17 +1,16 @@
 /* Getting the colors' ids and the board id */
 
 const black = document.getElementById('color-black');
-const red = document.getElementById('color-red');
-const pink = document.getElementById('color-pink');
-const purple = document.getElementById('color-purple');
+
 const board = document.getElementById('pixel-board');
 
 /* Creating a loop to generate pixels using appendChild */
 
-for (let i = 0; i < 25; i += 1) {
-  const newPixel = document.createElement('li');
-  newPixel.className = 'pixel';
-  board.appendChild(newPixel);
+const boardLines = 5;
+for (let i = 0; i < boardLines * boardLines; i += 1) {
+  const pixel = document.createElement('li');
+  pixel.className = 'pixel';
+  board.appendChild(pixel);
 }
 
 /* Starting the pixel art project with the color black selected */
@@ -23,17 +22,29 @@ window.onload = function startPixelArt() {
 /* Creating a function to change the selected color */
 
 function changeColor(newColor) {
-  black.classList.remove('selected');
-  red.classList.remove('selected');
-  pink.classList.remove('selected');
-  purple.classList.remove('selected');
+  const allColors = document.querySelectorAll('.color');
+  allColors.forEach((item) => {
+    item.classList.remove('selected');
+  });
   newColor.target.classList.add('selected');
 }
+function changeColorClicking() {
+  const allColors = document.querySelectorAll('.color');
+  allColors.forEach((item) => {
+    item.addEventListener('click', changeColor);
+  });
+}
+changeColorClicking();
 
-const allColors = document.querySelectorAll('.color');
-allColors.forEach((item) => {
-  item.addEventListener('click', changeColor);
-});
+/* Creating a function to paint the pixels according to the selected color */
+
+function paintPixel() {
+  const pixel = document.querySelectorAll('.pixel');
+  for (let i = 0; i < pixel.length; i += 1) {
+    pixel[i].addEventListener('click', changeColorClicking);
+  }
+}
+paintPixel();
 
 /* Coding lines to create the reset button */
 
