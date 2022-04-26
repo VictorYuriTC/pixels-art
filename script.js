@@ -1,7 +1,3 @@
-/* Getting the colors' ids and the board id */
-
-const black = document.getElementById('color-black');
-
 /* Creating a loop to generate pixels using appendChild */
 
 function generateBoard() {
@@ -18,6 +14,7 @@ generateBoard();
 /* Starting the pixel art project with the color black selected */
 
 window.onload = function startPixelArt() {
+  const black = document.getElementById('color-black');
   black.classList.toggle('selected');
 };
 
@@ -30,6 +27,9 @@ function changeColor(newColor) {
   });
   newColor.target.classList.add('selected');
 }
+
+/* Creating a function to paint the pixels according to the selected color */
+
 function changeColorClicking() {
   const allColors = document.querySelectorAll('.color');
   allColors.forEach((item) => {
@@ -37,8 +37,6 @@ function changeColorClicking() {
   });
 }
 changeColorClicking();
-
-/* Creating a function to paint the pixels according to the selected color */
 
 function paintPixel() {
   const pixel = document.querySelectorAll('.pixel');
