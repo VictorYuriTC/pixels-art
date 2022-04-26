@@ -11,25 +11,29 @@
   padding: 7px;
 }
 
-#color-black {
-  background-color: black;
-}
-
-#color-red {
-  background-color: red;
-}
-
-#color-pink {
-  background-color: pink;
-}
-
-#color-purple {
-  background-color: purple;
-}
-
 #pixel-board {
   display: block;
   max-width: 250px;
+}
+
+.black {
+  background-color: black;
+  cursor: url(black-cursor);
+}
+
+.red {
+  background-color: red;
+  cursor: url(red-cursor);
+}
+
+.pink {
+  background-color: pink;
+  cursor: url(pink-cursor);
+}
+
+.purple {
+  background-color: purple;
+  cursor: url(purple-cursor);
 }
 
 .color {

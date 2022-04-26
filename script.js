@@ -14,7 +14,7 @@ generateBoard();
 /* Starting the pixel art project with the color black selected */
 
 window.onload = function startPixelArt() {
-  const black = document.getElementById('color-black');
+  const black = document.getElementById('color-black').style.backgroundColor;
   black.classList.toggle('selected');
 };
 
@@ -28,8 +28,6 @@ function changeColor(newColor) {
   newColor.target.classList.add('selected');
 }
 
-/* Creating a function to paint the pixels according to the selected color */
-
 function changeColorClicking() {
   const allColors = document.querySelectorAll('.color');
   allColors.forEach((item) => {
@@ -38,13 +36,35 @@ function changeColorClicking() {
 }
 changeColorClicking();
 
-function paintPixel() {
+/* Creating a function to paint the pixels according to the selected color */
+
+function paintPixels() {
   const pixel = document.querySelectorAll('.pixel');
+  const selectedColor = document.querySelectorAll('.selected').style.backgroundColor;
+  const paintingColor = selectedColor.backgroundColor;
   for (let i = 0; i < pixel.length; i += 1) {
-    pixel[i].addEventListener('click', changeColorClicking);
+    pixel[i].backgroundColor = paintingColor;
+    console.log('oi');
   }
 }
-paintPixel();
+
+function paintPixelsClicking() {
+  const pixels = document.querySelectorAll('.pixel');
+  for (let i = 0; i < pixels.length; i += 1) {
+    pixels[i].addEventListener('click', paintPixels);
+  }
+}
+paintPixelsClicking();
+
+/* Changing the cursor appeareance to its selected color */
+
+/* function changeCursor(cursorColor) {
+  const allColors = document.querySelectorAll('.color');
+  allColors.forEach((item) => {
+    item.classList.remove('selected');
+  });
+}
+changeCursor(); */
 
 /* Creating the reset button and changing its style */
 
