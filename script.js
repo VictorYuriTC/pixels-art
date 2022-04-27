@@ -93,17 +93,11 @@ function resetButtonClicking() {
   button.onmouseover = function cursorStyle() {
     button.style.cursor = 'pointer';
   };
-}
-
-function changeCursorStyleClicking() {
-  const button = document.getElementById('clear-board');
-  button.addEventListener('click', changeCursorStyle);
 } */
 
 /* Loading webpage and invoking functions */
 
 window.onload = function startingPixelArt() {
-  /* changeCursorStyleClicking(); */
   createButton();
   generateBoard();
   paintPixelClicking();
