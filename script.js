@@ -1,86 +1,83 @@
-/* Creating a loop to generate pixels using appendChild */
+/* Generating board */
 
 function generateBoard() {
   const boardLines = 5;
   for (let i = 0; i < boardLines * boardLines; i += 1) {
     const board = document.getElementById('pixel-board');
-    const pixel = document.createElement('div');
-    pixel.className = 'pixel';
-    board.appendChild(pixel);
+    const generatePixel = document.createElement('div');
+    generatePixel.classList = 'pixel';
+    generatePixel.style.backgroundColor = 'white';
+    board.appendChild(generatePixel);
   }
 }
-generateBoard();
 
-/* Starting the pixel art project with the color black selected */
+/* Defining "black" as standard selected color */
 
-window.onload = function startPixelArt() {
-  const black = document.getElementById('color-black');
+function standardColor() {
+  const black = document.getElementById('black');
   black.classList.toggle('selected');
-};
+}
 
-/* Creating a function to change the selected color */
+/* Removing and selecting a color */
 
-function changeColor(newColor) {
-  const allColors = document.querySelectorAll('.color');
-  allColors.forEach((item) => {
+function selectColor(selectedColor) {
+  const colors = document.querySelectorAll('.color');
+  colors.forEach((item) => {
     item.classList.remove('selected');
   });
-  newColor.target.classList.add('selected');
+  selectedColor.target.classList.add('selected');
 }
 
-function changeColorClicking() {
-  const allColors = document.querySelectorAll('.color');
-  allColors.forEach((item) => {
-    item.addEventListener('click', changeColor);
+function selectColorClicking() {
+  const colors = document.querySelectorAll('.color');
+  colors.forEach((item) => {
+    item.addEventListener('click', selectColor);
   });
 }
-changeColorClicking();
 
-/* Creating a function to paint the pixels according to the selected color */
+/* Painting pixels */
 
-/* Changing the cursor appeareance to its selected color */
-
-/* function changeCursor(cursorColor) {
-  const allColors = document.querySelectorAll('.color');
-  allColors.forEach((item) => {
-    item.classList.remove('selected');
-  });
+function paintPixel(paintedPixel) {
+  paintedPixel.target.style.backgroundColor = 'black';
 }
-changeCursor(); */
 
-/* Creating the reset button and changing its style */
+function paintPixelClicking() {
+  const pixels = document.querySelectorAll('.pixel');
+  for (let i = 0; i < pixels.length; i += 1) {
+    pixels[i].addEventListener('click', paintPixel);
+  }
+}
+
+/* Adding a button to clear the entire board */
 
 function createButton() {
-  const resetButton = document.createElement('button');
+  const generateButton = document.createElement('button');
   const board = document.getElementById('pixel-board');
-  resetButton.id = 'clear-board';
-  resetButton.innerText = 'Limpar';
-  document.body.insertBefore(resetButton, board);
-
-  function changeButton() {
-    resetButton.onmouseover = function buttonIce() {
-      resetButton.style.background = '#ace2ef';
-      resetButton.style.cursor = 'pointer';
-    };
-    resetButton.onmouseleave = function buttonWhite() {
-      resetButton.style.background = 'white';
-    };
-  }
-  changeButton();
+  generateButton.id = 'clear-board';
+  generateButton.innerText = 'Limpar';
+  generateButton.style.display = 'block';
+  document.body.insertBefore(generateButton, board);
 }
-createButton();
 
-/* Adding an event listener to the reset button */
-
-function resetBoard() {
+function resetButton() {
   const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].style.backgroundColor = 'white';
   }
 }
 
-function clear() {
-  const clearBoard = document.querySelector('#clear-board');
-  clearBoard.addEventListener('click', resetBoard);
+function resetButtonClicking() {
+  const button = document.getElementById('clear-board');
+  button.addEventListener('click', resetButton);
 }
-clear();
+
+/* Loading webpage and invoking functions */
+
+window.onload = function startingPixelArt() {
+  generateBoard();
+  standardColor();
+  selectColorClicking();
+  paintPixelClicking();
+  createButton();
+  resetButtonClicking();
+};

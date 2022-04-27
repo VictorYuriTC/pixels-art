@@ -2,45 +2,42 @@
   padding: 0;
 }
 
-#clear-board {
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
+/* Blocks */
+
+#color-palette {
   display: inline-block;
-  font-weight: 900;
-  padding: 7px;
 }
 
 #pixel-board {
   display: block;
-  max-width: 250px;
+  max-width: 220px;
+  max-height: 220px;
 }
 
-.black {
+/* Colors */
+
+#black {
   background-color: black;
-  cursor: url(black-cursor);
 }
 
-.red {
+#red {
   background-color: red;
-  cursor: url(red-cursor);
 }
 
-.pink {
+#pink {
   background-color: pink;
-  cursor: url(pink-cursor);
 }
 
-.purple {
+#purple {
   background-color: purple;
-  cursor: url(purple-cursor);
 }
+
+/* Squares */
 
 .color {
   border-color: black;
   border-style: solid;
   border-width: 1px;
-  color: white;
   display: inline-block;
   height: 40px;
   width: 40px;
@@ -50,10 +47,7 @@
   border-color: black;
   border-style: solid;
   border-width: 1px;
-  background-color: white;
   display: inline-block;
   height: 40px;
   width: 40px;
-  padding: 0;
-  margin: 0;
 }
