@@ -37,10 +37,11 @@ function selectColorClicking() {
 
 /* Painting pixels */
 
-function paintPixel(paintedPixel) {
+function paintPixel(event) {
   const selected = document.querySelector('.selected');
   const selectedColor = window.getComputedStyle(selected);
   const cssColor = selectedColor.getPropertyValue('background-color');
+  const paintedPixel = event;
   paintedPixel.target.style.backgroundColor = cssColor;
 }
 
