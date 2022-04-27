@@ -38,7 +38,10 @@ function selectColorClicking() {
 /* Painting pixels */
 
 function paintPixel(paintedPixel) {
-  paintedPixel.target.style.backgroundColor = 'black';
+  const selected = document.querySelectorAll('.selected');
+  const selectedColor = window.getComputedStyle(selected, null);
+  const pixelColor = selectedColor.getPropertyValue('background-color');
+  paintedPixel.target.style.backgroundColor = pixelColor;
 }
 
 function paintPixelClicking() {
@@ -51,8 +54,8 @@ function paintPixelClicking() {
 /* Adding a button to clear the entire board */
 
 function createButton() {
-  const generateButton = document.createElement('button');
   const board = document.getElementById('pixel-board');
+  const generateButton = document.createElement('button');
   generateButton.id = 'clear-board';
   generateButton.innerText = 'Limpar';
   generateButton.style.display = 'block';
@@ -60,9 +63,12 @@ function createButton() {
 }
 
 function resetButton() {
+  const board = document.getElementById('pixel-board');
   const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].style.backgroundColor = 'white';
+    board.style.backgroundColor = 'white';
+    document.body.style.backgroundColor = 'white';
   }
 }
 
