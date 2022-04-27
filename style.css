@@ -3,7 +3,6 @@
 }
 
 /* Blocks */
-
 #color-palette {
   display: inline-block;
 }
@@ -16,7 +15,6 @@
 }
 
 /* Colors */
-
 #black {
   background-color: black;
 }
@@ -34,7 +32,6 @@
 }
 
 /* Squares */
-
 .color {
   border-color: black;
   border-style: solid;

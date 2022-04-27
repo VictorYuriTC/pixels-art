@@ -61,6 +61,16 @@ function createButton() {
   generateButton.innerText = 'Limpar';
   generateButton.style.display = 'block';
   document.body.insertBefore(generateButton, board);
+/*   function changeButtonStyle() {
+    const button = document.getElementById('clear-board');
+    button.onmouseover = function buttonColorIce() {
+      button.style.backgroundColor = '#c6dff3';
+    };
+    button.onmouseleave = function buttonColorWhite() {
+      button.style.backgroundColor = 'white';
+    };
+  }
+  changeButtonStyle(); */
 }
 
 function resetButton() {
@@ -76,9 +86,24 @@ function resetButtonClicking() {
   button.addEventListener('click', resetButton);
 }
 
+/* Changing the cursor style */
+
+/* function changeCursorStyle() {
+  const button = document.getElementById('clear-board');
+  button.onmouseover = function cursorStyle() {
+    button.style.cursor = 'pointer';
+  };
+}
+
+function changeCursorStyleClicking() {
+  const button = document.getElementById('clear-board');
+  button.addEventListener('click', changeCursorStyle);
+} */
+
 /* Loading webpage and invoking functions */
 
 window.onload = function startingPixelArt() {
+  /* changeCursorStyleClicking(); */
   createButton();
   generateBoard();
   paintPixelClicking();
