@@ -38,10 +38,10 @@ function selectColorClicking() {
 /* Painting pixels */
 
 function paintPixel(paintedPixel) {
-  const selected = document.querySelectorAll('.selected');
-  const selectedColor = window.getComputedStyle(selected, null);
-  const pixelColor = selectedColor.getPropertyValue('background-color');
-  paintedPixel.target.style.backgroundColor = pixelColor;
+  const selected = document.querySelector('.selected');
+  const selectedColor = window.getComputedStyle(selected);
+  const cssColor = selectedColor.getPropertyValue('background-color');
+  paintedPixel.target.style.backgroundColor = cssColor;
 }
 
 function paintPixelClicking() {
@@ -63,11 +63,9 @@ function createButton() {
 }
 
 function resetButton() {
-  const board = document.getElementById('pixel-board');
   const pixels = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].style.backgroundColor = 'white';
-    board.style.backgroundColor = 'white';
     document.body.style.backgroundColor = 'white';
   }
 }
@@ -80,10 +78,10 @@ function resetButtonClicking() {
 /* Loading webpage and invoking functions */
 
 window.onload = function startingPixelArt() {
-  generateBoard();
-  standardColor();
-  selectColorClicking();
-  paintPixelClicking();
   createButton();
+  generateBoard();
+  paintPixelClicking();
   resetButtonClicking();
+  selectColorClicking();
+  standardColor();
 };
