@@ -71,7 +71,7 @@ function createButton() {
   generateButton.style.display = 'block';
   generateButton.style.padding = '5px';
   document.body.insertBefore(generateButton, board);
-  function changeButtonStyle() {
+/*   function changeButtonStyle() {
     const button = document.getElementById('clear-board');
     button.onmouseover = function buttonColorIce() {
       button.style.backgroundColor = '#c6dff3';
@@ -81,7 +81,7 @@ function createButton() {
       button.style.backgroundColor = 'white';
     };
   }
-  changeButtonStyle();
+  changeButtonStyle(); */
 }
 
 function resetButton() {
