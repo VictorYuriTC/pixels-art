@@ -19,7 +19,7 @@ along with the black color (using numbers and letters */
 function generateBlackColor() {
   const insertBlackColor = document.createElement('div');
   insertBlackColor.classList.add('color');
-  insertBlackColor.classList.add('created-color');
+  insertBlackColor.classList.add('selected');
   insertBlackColor.style.background = 'black';
   colorPalette.appendChild(insertBlackColor);
 }
