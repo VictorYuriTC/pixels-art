@@ -1,10 +1,18 @@
 /* Declaring and changing the style of main elements */
 
+/* const bodyStyle = document.body.style;
+bodyStyle.alignItems = 'center';
+bodyStyle.background = '#f5f5f5';
+bodyStyle.display = 'flex';
+bodyStyle.height = '100%';
+bodyStyle.justifyContent = 'center';
+bodyStyle.margin = '0';
+bodyStyle.padding = '0'; */
 const board = document.querySelector('#pixel-board');
 const boardStyle = board.style;
 boardStyle.display = 'block';
-boardStyle.height = '220px';
-boardStyle.width = '220px';
+boardStyle.maxHeight = '220px';
+boardStyle.maxWidth = '220px';
 const colorPalette = document.getElementById('color-palette');
 colorPalette.style.display = 'block';
 
