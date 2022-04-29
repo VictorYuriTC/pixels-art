@@ -34,7 +34,7 @@ function generateRandomColor() {
   return randomColor;
 }
 
-function changeRandomColor() {
+function insertGeneratedRandomColor() {
   for (let i = 0; i < 3; i += 1) {
     const insertRandomColor = document.createElement('div');
     insertRandomColor.classList.add('color');
@@ -64,12 +64,12 @@ function changeRandomColorClicking() {
   const boardSize = document.querySelector('#board-size');
   document.body.insertBefore(colorButton, boardSize);
   colorButton.addEventListener('click', removeRandomColor);
-  colorButton.addEventListener('click', changeRandomColor);
+  colorButton.addEventListener('click', insertGeneratedRandomColor);
 }
 
 /* Generating board and changing pixels' cursor style */
 
-function generateBoard(boardLines) {
+function generateInitialBoard(boardLines) {
   for (let i = 0; i < boardLines * boardLines; i += 1) {
     const generatePixel = document.createElement('div');
     generatePixel.classList = 'pixel';
@@ -192,13 +192,13 @@ function generateNewBoard() {
     alert('Board inválido!');
   } else if (boardSize < 5) {
     removeBoard();
-    generateBoard(5);
+    generateInitialBoard(5);
   } else if (boardSize > 50) {
     removeBoard();
-    generateBoard(50);
+    generateInitialBoard(50);
   } else {
     removeBoard();
-    generateBoard(newBoard);
+    generateInitialBoard(newBoard);
   }
   paintPixelClicking();
 }
@@ -211,13 +211,13 @@ function generateNewBoardClicking() {
 /* Loading webpage and invoking functions */
 
 window.onload = function startingPixelArt() {
+  changeRandomColorClicking();
+  clearBoardClicking();
   createClearButton();
   generateBlackColor();
-  generateBoard(5);
+  generateInitialBoard(5);
   generateNewBoardClicking();
-  changeRandomColor();
-  changeRandomColorClicking();
+  insertGeneratedRandomColor();
   paintPixelClicking();
-  clearBoardClicking();
   selectColorClicking();
 };
