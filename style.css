@@ -1,5 +1,72 @@
 * {
+  background-color: azure;
   box-sizing: border-box;
+}
+
+/* Elements */
+
+#add-color-button {
+  align-items: center;
+  background-color: darkgrey;
+  display: inline-block;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#add-color-input {
+  align-items: center;
+  background-color: white;
+  display: inline-block;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 195px;
+}
+
+#board-size {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#clear-board {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+#color-button {
+  align-items: center;
+  background-color: darkgrey;
+  display: inline-block;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#generate-board {
+  align-items: center;
+  background-color: darkgrey;
+  display: inline-block;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#tip {
+  align-items: center;
+  display: block;
+  font-weight: 600;
+  justify-content: center;
+  padding: 5px;
 }
 
 /* Squares */
@@ -7,6 +74,15 @@
   border: black solid 1px;
   cursor: crosshair;
   display: inline-block;
-  height: 40px;
-  width: 40px;
+  height: 25px;
+  width: 25px;
+}
+
+.pixel {
+  background-color: white;
+  border: black solid 1px;
+  cursor: cell;
+  display: inline-block;
+  height: 2.5em;
+  width: 2.5em;
 }
