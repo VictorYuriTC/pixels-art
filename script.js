@@ -34,7 +34,7 @@ function generateRandomColor() {
   return randomColor;
 }
 
-function generateRandomColorClicking() {
+function changeRandomColor() {
   for (let i = 0; i < 3; i += 1) {
     const insertRandomColor = document.createElement('div');
     insertRandomColor.classList.add('color');
@@ -42,6 +42,29 @@ function generateRandomColorClicking() {
     insertRandomColor.style.background = generateRandomColor();
     colorPalette.appendChild(insertRandomColor);
   }
+}
+
+/* Changing colors from the palette color */
+
+function removeRandomColor() {
+  const insertedRandomColor = document.querySelectorAll('.created-color');
+  if (insertedRandomColor.length >= 3) {
+    for (let i = 0; i < insertedRandomColor.length; i += 1) {
+      insertedRandomColor[i].remove();
+    }
+  }
+}
+
+function changeRandomColorClicking() {
+  const colorButton = document.createElement('button');
+  colorButton.id = 'color-button';
+  colorButton.innerText = 'Gerar paleta de cores aleatoriamente';
+  colorButton.style.display = 'block';
+  colorButton.style.padding = '5px';
+  const boardSize = document.querySelector('#board-size');
+  document.body.insertBefore(colorButton, boardSize);
+  colorButton.addEventListener('click', removeRandomColor);
+  colorButton.addEventListener('click', changeRandomColor);
 }
 
 /* Generating board and changing pixels' cursor style */
@@ -144,14 +167,16 @@ function selectNewBoardSize() {
   generateInput.id = 'board-size';
   generateInput.min = 1;
   generateInput.max = 50;
-  generateInput.placeholder = 'Change board size';
+  generateInput.placeholder = 'Alterar tamanho do quadro';
   generateInput.type = 'number';
   generateInput.style.display = 'inline-block';
-  generateInput.style.width = '130px';
+  generateInput.style.padding = '5px';
+  generateInput.style.width = '180px';
   document.body.insertBefore(generateInput, board);
   const generateBoardButton = document.createElement('button');
   generateBoardButton.id = 'generate-board';
   generateBoardButton.innerText = 'VQV';
+  generateBoardButton.style.padding = '5px';
   document.body.insertBefore(generateBoardButton, board);
 }
 selectNewBoardSize();
@@ -188,9 +213,10 @@ function generateNewBoardClicking() {
 window.onload = function startingPixelArt() {
   createClearButton();
   generateBlackColor();
-  generateRandomColorClicking();
   generateBoard(5);
   generateNewBoardClicking();
+  changeRandomColor();
+  changeRandomColorClicking();
   paintPixelClicking();
   clearBoardClicking();
   selectColorClicking();
