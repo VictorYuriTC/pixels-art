@@ -1,4 +1,4 @@
-/* Declaration and CSS of main elements */
+/* Declaring and changing the style of main elements */
 
 const board = document.querySelector('#pixel-board');
 const boardStyle = board.style;
@@ -7,6 +7,43 @@ boardStyle.height = '220px';
 boardStyle.width = '220px';
 const colorPalette = document.getElementById('color-palette');
 colorPalette.style.display = 'block';
+
+/* Chosing 3 random colors to be shown in the color palette
+along with the black color (only using numbers) */
+
+/* function to be added */
+
+/* Chosing 3 random colors to be shown in the color palette
+along with the black color (using numbers and letters */
+
+/* Source: https://www.codegrepper.com/code-examples/javascript/random+letter+in+javascript+generator */
+
+function generateBlackColor() {
+  const insertBlackColor = document.createElement('div');
+  insertBlackColor.classList.add('color');
+  insertBlackColor.classList.add('created-color');
+  insertBlackColor.style.background = 'black';
+  colorPalette.appendChild(insertBlackColor);
+}
+
+function generateRandomColor() {
+  let randomColor = `${'#'}`;
+  const hexCharacters = '0123456789ABCDEF';
+  for (let i = 0; i < 6; i += 1) {
+    randomColor += hexCharacters.charAt(Math.random() * hexCharacters.length);
+  }
+  return randomColor;
+}
+
+function generateRandomColorClicking() {
+  for (let i = 0; i < 3; i += 1) {
+    const insertRandomColor = document.createElement('div');
+    insertRandomColor.classList.add('color');
+    insertRandomColor.classList.add('created-color');
+    insertRandomColor.style.background = generateRandomColor();
+    colorPalette.appendChild(insertRandomColor);
+  }
+}
 
 /* Generating board and changing pixels' cursor style */
 
@@ -18,31 +55,11 @@ function generateBoard(boardLines) {
     generatePixel.style.border = 'black solid 1px';
     generatePixel.style.cursor = 'cell';
     generatePixel.style.display = 'inline-block';
-    generatePixel.style.height = '40px';
-    generatePixel.style.width = '40px';
+    generatePixel.style.height = '2.5em';
+    generatePixel.style.width = '2.5em';
     board.appendChild(generatePixel);
   }
 }
-
-/* Creating an input bar to generate a new board with
-a chosen number between 5 and 50, including 5 and 50 */
-
-/* function selectNewBoardSize() {
-  const generateInput = document.createElement('input');
-  generateInput.id = 'board-size';
-  generateInput.min = '5';
-  generateInput.max = '50';
-  generateInput.placeholder = 'Change board size';
-  generateInput.type = 'number';
-  generateInput.style.display = 'inline-block';
-  generateInput.style.width = '140px';
-  document.body.insertBefore(generateInput, board);
-  const generateBoardButton = document.createElement('button');
-  generateBoardButton.id = 'generate-board';
-  generateBoardButton.innerText = 'VQV';
-  document.body.insertBefore(generateBoardButton, board);
-}
-selectNewBoardSize(); */
 
 /* Removing board in order to create a new board */
 
@@ -51,31 +68,6 @@ function removeBoard() {
   for (let i = 0; i < pixels.length; i += 1) {
     pixels[i].remove();
   }
-}
-
-/* Generating a new board with selectBoardSize's input */
-
-function generateNewBoard() {
-  const boardSize = document.querySelector('#board-size').value;
-  const newBoard = Number(boardSize);
-  if (boardSize === '' && boardSize === 0) {
-    alert('Board inválido!');
-  } else {
-    removeBoard();
-    generateBoard(newBoard);
-  }
-}
-
-function generateNewBoardClicking() {
-  const boardButton = document.querySelector('#generate-board');
-  boardButton.addEventListener('click', generateNewBoard);
-}
-
-/* Defining "black" as standard selected color */
-
-function standardColor() {
-  const black = document.getElementById('black');
-  black.classList.toggle('selected');
 }
 
 /* Removing and selecting a color */
@@ -121,17 +113,16 @@ function createClearButton() {
   generateClearButton.style.display = 'block';
   generateClearButton.style.padding = '5px';
   document.body.insertBefore(generateClearButton, board);
-/*   function changeClearButtonStyle() {
-    const clearButton = document.getElementById('clear-board');
-    clearButton.onmouseover = function buttonColorIce() {
-      clearButton.style.backgroundColor = '#c6dff3';
-      clearButton.style.cursor = 'pointer';
+  function changeClearButtonStyle() {
+    generateClearButton.onmouseover = function buttonColorIce() {
+      generateClearButton.style.backgroundColor = '#c6dff3';
+      generateClearButton.style.cursor = 'pointer';
     };
-    clearButton.onmouseout = function buttonColorWhite() {
-      clearButton.style.backgroundColor = 'white';
+    generateClearButton.onmouseout = function buttonColorWhite() {
+      generateClearButton.style.backgroundColor = 'white';
     };
   }
-  changeClearButtonStyle(); */
+  changeClearButtonStyle();
 }
 
 function clearBoard() {
@@ -146,14 +137,62 @@ function clearBoardClicking() {
   clearButton.addEventListener('click', clearBoard);
 }
 
+/* Creating an input bar to generate a new board with
+a chosen number between 5 and 50, including 5 and 50 */
+
+function selectNewBoardSize() {
+  const generateInput = document.createElement('input');
+  generateInput.id = 'board-size';
+  generateInput.min = 1;
+  generateInput.max = 50;
+  generateInput.placeholder = 'Change board size';
+  generateInput.type = 'number';
+  generateInput.style.display = 'inline-block';
+  generateInput.style.width = '130px';
+  document.body.insertBefore(generateInput, board);
+  const generateBoardButton = document.createElement('button');
+  generateBoardButton.id = 'generate-board';
+  generateBoardButton.innerText = 'VQV';
+  document.body.insertBefore(generateBoardButton, board);
+}
+selectNewBoardSize();
+
+/* Generating a new board with selectBoardSize's input */
+
+function generateNewBoard() {
+  const boardSize = document.querySelector('#board-size').value;
+  boardSize.min = 5;
+  boardSize.max = 50;
+  const newBoard = Number(boardSize);
+  if (boardSize === ''/*  || boardSize == 0 */) {
+    alert('Board inválido!');
+  } else if (boardSize < 5) {
+    removeBoard();
+    generateBoard(5);
+  } else if (boardSize > 50) {
+    removeBoard();
+    generateBoard(50);
+  } else {
+    removeBoard();
+    generateBoard(newBoard);
+  }
+  paintPixelClicking();
+}
+
+function generateNewBoardClicking() {
+  const boardButton = document.querySelector('#generate-board');
+  boardButton.addEventListener('click', generateNewBoard);
+}
+
 /* Loading webpage and invoking functions */
 
 window.onload = function startingPixelArt() {
   createClearButton();
+  generateBlackColor();
+  generateRandomColorClicking();
   generateBoard(5);
   generateNewBoardClicking();
   paintPixelClicking();
   clearBoardClicking();
   selectColorClicking();
-  standardColor();
 };
