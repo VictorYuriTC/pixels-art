@@ -16,8 +16,6 @@ along with the black color (only using numbers) */
 /* Chosing 3 random colors to be shown in the color palette
 along with the black color (using numbers and letters */
 
-/* Source: https://www.codegrepper.com/code-examples/javascript/random+letter+in+javascript+generator */
-
 function generateBlackColor() {
   const insertBlackColor = document.createElement('div');
   insertBlackColor.classList.add('color');
@@ -26,6 +24,7 @@ function generateBlackColor() {
   colorPalette.appendChild(insertBlackColor);
 }
 
+/* Source: https://www.codegrepper.com/code-examples/javascript/random+letter+in+javascript+generator */
 function generateRandomColor() {
   let randomColor = `${'#'}`;
   const hexCharacters = '0123456789ABCDEF';
