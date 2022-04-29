@@ -8,68 +8,9 @@ boardStyle.width = '220px';
 const colorPalette = document.getElementById('color-palette');
 colorPalette.style.display = 'block';
 
-/* Choosing 3 random colors to be shown in the color palette
-along with the black color (only using numbers) */
-
-/* function to be added */
-
-/* Choosing 3 random colors to be shown in the color palette
-along with the black color (using numbers and letters */
-
-function generateBlackColor() {
-  const insertBlackColor = document.createElement('div');
-  insertBlackColor.classList.add('color');
-  insertBlackColor.classList.add('selected');
-  insertBlackColor.style.background = 'black';
-  colorPalette.appendChild(insertBlackColor);
-}
-
-/* Source: https://www.codegrepper.com/code-examples/javascript/random+letter+in+javascript+generator */
-function generateRandomColor() {
-  let randomColor = `${'#'}`;
-  const hexCharacters = '0123456789ABCDEF';
-  for (let i = 0; i < 6; i += 1) {
-    randomColor += hexCharacters.charAt(Math.random() * hexCharacters.length);
-  }
-  return randomColor;
-}
-
-function insertGeneratedRandomColor() {
-  for (let i = 0; i < 3; i += 1) {
-    const insertRandomColor = document.createElement('div');
-    insertRandomColor.classList.add('color');
-    insertRandomColor.classList.add('created-color');
-    insertRandomColor.style.background = generateRandomColor();
-    colorPalette.appendChild(insertRandomColor);
-  }
-}
-
-/* Changing colors from the palette color */
-
-function removeRandomColor() {
-  const insertedRandomColor = document.querySelectorAll('.created-color');
-  if (insertedRandomColor.length >= 3) {
-    for (let i = 0; i < insertedRandomColor.length; i += 1) {
-      insertedRandomColor[i].remove();
-    }
-  }
-}
-
-function changeRandomColorClicking() {
-  const colorButton = document.createElement('button');
-  colorButton.id = 'color-button';
-  colorButton.innerText = 'Gerar paleta de cores aleatoriamente';
-  colorButton.style.display = 'block';
-  colorButton.style.padding = '5px';
-  const boardSize = document.querySelector('#board-size');
-  document.body.insertBefore(colorButton, boardSize);
-  colorButton.addEventListener('click', removeRandomColor);
-  colorButton.addEventListener('click', insertGeneratedRandomColor);
-}
-
 /* Generating board and changing pixels' cursor style */
 
-function generateInitialBoard(boardLines) {
+function generateBoard(boardLines) {
   for (let i = 0; i < boardLines * boardLines; i += 1) {
     const generatePixel = document.createElement('div');
     generatePixel.classList = 'pixel';
@@ -95,16 +36,16 @@ function removeBoard() {
 /* Removing and selecting a color */
 
 function selectColor(selectedColor) {
-  const allColors = document.querySelectorAll('.color');
-  allColors.forEach((item) => {
+  const color = document.querySelectorAll('.color');
+  color.forEach((item) => {
     item.classList.remove('selected');
   });
   selectedColor.target.classList.add('selected');
 }
 
 function selectColorClicking() {
-  const allColors = document.querySelectorAll('.color');
-  allColors.forEach((item) => {
+  const color = document.querySelectorAll('.color');
+  color.forEach((item) => {
     item.addEventListener('click', selectColor);
   });
 }
@@ -192,13 +133,13 @@ function generateNewBoard() {
     alert('Board inválido!');
   } else if (boardSize < 5) {
     removeBoard();
-    generateInitialBoard(5);
+    generateBoard(5);
   } else if (boardSize > 50) {
     removeBoard();
-    generateInitialBoard(50);
+    generateBoard(50);
   } else {
     removeBoard();
-    generateInitialBoard(newBoard);
+    generateBoard(newBoard);
   }
   paintPixelClicking();
 }
@@ -208,16 +149,76 @@ function generateNewBoardClicking() {
   boardButton.addEventListener('click', generateNewBoard);
 }
 
+/* Chosing 3 random colors to be shown in the color palette
+along with the black color (only using numbers) */
+
+/* function to be added */
+
+/* Chosing 3 random colors to be shown in the color palette
+along with the black color (using numbers and letters */
+
+function generateBlackColor() {
+  const insertBlackColor = document.createElement('div');
+  insertBlackColor.classList.add('color');
+  insertBlackColor.classList.add('selected');
+  insertBlackColor.style.background = 'black';
+  colorPalette.appendChild(insertBlackColor);
+}
+
+/* Source: https://www.codegrepper.com/code-examples/javascript/random+letter+in+javascript+generator */
+function generateRandomColor() {
+  let randomColor = `${'#'}`;
+  const hexCharacters = '0123456789ABCDEF';
+  for (let i = 0; i < 6; i += 1) {
+    randomColor += hexCharacters.charAt(Math.random() * hexCharacters.length);
+  }
+  return randomColor;
+}
+
+function changeRandomColor() {
+  for (let i = 0; i < 3; i += 1) {
+    const insertRandomColor = document.createElement('div');
+    insertRandomColor.classList.add('color');
+    insertRandomColor.classList.add('created-color');
+    insertRandomColor.style.background = generateRandomColor();
+    colorPalette.appendChild(insertRandomColor);
+  }
+}
+
+/* Changing colors from the palette color */
+
+function removeRandomColor() {
+  const insertedRandomColor = document.querySelectorAll('.created-color');
+  if (insertedRandomColor.length >= 3) {
+    for (let i = 0; i < insertedRandomColor.length; i += 1) {
+      insertedRandomColor[i].remove();
+    }
+  }
+}
+
+function changeRandomColorClicking() {
+  const colorButton = document.createElement('button');
+  colorButton.id = 'color-button';
+  colorButton.innerText = 'Gerar paleta de cores aleatoriamente';
+  colorButton.style.display = 'block';
+  colorButton.style.padding = '5px';
+  const boardSize = document.querySelector('#board-size');
+  document.body.insertBefore(colorButton, boardSize);
+  colorButton.addEventListener('click', removeRandomColor);
+  colorButton.addEventListener('click', changeRandomColor);
+  colorButton.addEventListener('click', selectColorClicking);
+}
+
 /* Loading webpage and invoking functions */
 
 window.onload = function startingPixelArt() {
-  changeRandomColorClicking();
-  clearBoardClicking();
   createClearButton();
   generateBlackColor();
-  generateInitialBoard(5);
+  generateBoard(5);
   generateNewBoardClicking();
-  insertGeneratedRandomColor();
+  changeRandomColor();
+  changeRandomColorClicking();
   paintPixelClicking();
+  clearBoardClicking();
   selectColorClicking();
 };

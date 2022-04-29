@@ -6,3 +6,11 @@
   height: 40px;
   width: 40px;
 }
+
+.created-color {
+  border: black solid 1px;
+  cursor: crosshair;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+}
