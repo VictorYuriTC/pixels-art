@@ -8,12 +8,12 @@ boardStyle.width = '220px';
 const colorPalette = document.getElementById('color-palette');
 colorPalette.style.display = 'block';
 
-/* Chosing 3 random colors to be shown in the color palette
+/* Choosing 3 random colors to be shown in the color palette
 along with the black color (only using numbers) */
 
 /* function to be added */
 
-/* Chosing 3 random colors to be shown in the color palette
+/* Choosing 3 random colors to be shown in the color palette
 along with the black color (using numbers and letters */
 
 function generateBlackColor() {
